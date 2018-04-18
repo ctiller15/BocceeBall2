@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201804181351325_MakePlayerNumberNullable.Designer.cs">
       <DependentUpon>201804181351325_MakePlayerNumberNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804181423545_AddWinnerID.cs" />
+    <Compile Include="Migrations\201804181423545_AddWinnerID.Designer.cs">
+      <DependentUpon>201804181423545_AddWinnerID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Player.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804181351325_MakePlayerNumberNullable.resx">
       <DependentUpon>201804181351325_MakePlayerNumberNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804181423545_AddWinnerID.resx">
+      <DependentUpon>201804181423545_AddWinnerID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
