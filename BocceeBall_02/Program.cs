@@ -33,6 +33,41 @@ namespace BocceeBall_02
             //db.Games.Add(game1);
             //db.Games.Add(game2);
 
+            // Creating some players.
+
+            //var newPlayer = new Models.Player()
+            //{
+            //    FullName = "Ricardo",
+            //    NickName = "Ricky",
+            //    ThrowingArm = "Right"
+            //};
+
+            //var newPlayer2 = new Models.Player()
+            //{
+            //    FullName = "Stephanie",
+            //    NickName = "Steph",
+            //    ThrowingArm = "Both"
+            //};
+
+            //db.Players.Add(newPlayer);
+            //db.Players.Add(newPlayer2);
+
+            // Creating some teams.
+            //var team1 = new Models.Team()
+            //{
+            //    Mascot = "Wolves",
+            //    Color = "Gray"
+            //};
+
+            //var team2 = new Models.Team()
+            //{
+            //    Mascot = "Warriors",
+            //    Color = "Gold"
+            //};
+
+            //db.Teams.Add(team1);
+            //db.Teams.Add(team2);
+
             // Get all games that happened in the past.
             var pastGames = db.Games.Where(x => x.DateHappened < DateTime.Today);
 
