@@ -30,6 +30,38 @@ namespace BocceeBall_02
             //    DateHappened = new DateTime(2080, 05, 23),
             //};
 
+            //var game3 = new Models.Game()
+            //{
+            //    HomeScore = 5,
+            //    AwayScore = 10,
+            //    Notes = "Closer!",
+            //    DateHappened = new DateTime(2011, 02, 14)
+            //};
+
+            //var team3 = new Models.Team()
+            //{
+            //    Mascot = "HoneyBadger",
+            //    Color = "Orange"
+            //};
+
+            //var player3 = new Models.Player()
+            //{
+            //    FullName = "Chris",
+            //    NickName = "Sabrina Consuelo",
+            //    ThrowingArm = "Yes"
+            //};
+
+            //player3.Team = team3;
+            //game3.HomeTeam = team3;
+            //game3.Winner = team3;
+
+            //var team2 = db.Teams.First(x => x.ID == 2);
+            //game3.AwayTeam = team2;
+
+            //db.Games.Add(game3);
+            //db.Teams.Add(team3);
+            //db.Players.Add(player3);
+
             //db.Games.Add(game1);
             //db.Games.Add(game2);
 
@@ -68,6 +100,56 @@ namespace BocceeBall_02
             //db.Teams.Add(team1);
             //db.Teams.Add(team2);
 
+            //var playerSteph = db.Players.First(p => p.FullName == "Stephanie");
+            //var stephTeam = db.Teams.First(t => t.Mascot == "Wolves");
+
+            //playerSteph.Team = stephTeam;
+
+            //var allTeams = db.Teams.Include(x => x.Game.Where(y => y.WinnerID == x.ID));
+            //foreach(var Team in allTeams)
+            //{
+            //    Console.WriteLine(Team.Game);
+
+            //}
+
+            var allTeams = db.Teams;
+            var allGames = db.Games;
+
+            var teamsWithGames = db.Teams.Include(i => i.Game).ToList();
+            foreach(var team in teamsWithGames)
+            {
+                int WinCount = team.Game.Count(x => x.WinnerID == team.ID);
+                int TotalCount = team.Game.Count();
+                Console.WriteLine(team.Game.Count(x => x.WinnerID == team.ID));
+                Console.WriteLine($"The {team.Color} {team.Mascot} won {WinCount} games and lost {TotalCount - WinCount} games");
+            }
+
+            //var joined = from t1 in db.Teams
+            //             join t2 in db.Games on t1.ID equals t2.WinnerID
+            //             select new { t1.ID, t1.Mascot, t2.WinnerID };
+
+            //foreach(var game in joined)
+            //{
+            //    Console.WriteLine(game.WinnerID);
+            //    Console.WriteLine($"team {game.ID} has played{joined.Count()} games");
+            //}
+
+
+            //foreach(var team in allTeams)
+            //{
+            //    var teamID = team.ID;
+            //    Console.WriteLine(team.ID);
+            //    Console.WriteLine(allGames.Count());
+            //    var count = allGames.Count(g => teamID > 0);
+            //    Console.WriteLine($"{count} games won by team {team.ID}");
+            //}
+
+            Console.ReadLine();
+
+            var playerRicky = db.Players.First(p => p.FullName == "Ricardo");
+            var rickTeam = db.Teams.First(t => t.Mascot == "Warriors");
+            playerRicky.Team = rickTeam;
+
             // Get all games that happened in the past.
             var pastGames = db.Games.Where(x => x.DateHappened < DateTime.Today);
 
@@ -84,6 +166,13 @@ namespace BocceeBall_02
                 Console.WriteLine($"game {game.ID} happens on {game.DateHappened}");
             }
 
+            // Get all players and their team.
+            var players = db.Players;
+
+            foreach(var player in players)
+            {
+                Console.WriteLine($"{player.FullName} is on team {(player.TeamID != null ? player.TeamID.ToString() : "No team")}");
+            }
 
             Console.ReadLine();
             db.SaveChanges();

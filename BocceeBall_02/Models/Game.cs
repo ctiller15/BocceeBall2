@@ -18,6 +18,7 @@ namespace BocceeBall_02.Models
         public Team AwayTeam { get; set; }
 
         public int? WinnerID { get; set; }
+        public Team Winner { get; set; }
 
         public int? HomeScore { get; set; }
         public int? AwayScore { get; set; }
